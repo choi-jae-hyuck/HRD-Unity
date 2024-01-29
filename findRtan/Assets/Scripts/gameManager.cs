@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class gameManager : MonoBehaviour
@@ -12,6 +13,9 @@ public class gameManager : MonoBehaviour
 
     public GameObject firstCard;
     public GameObject secondCard;
+
+    public AudioSource audioSource;
+    public AudioClip match;
 
 
     void Awake()
@@ -45,6 +49,8 @@ public class gameManager : MonoBehaviour
 
         if (firstCardImage == secondCardImage)
         {
+            audioSource.PlayOneShot(match);
+
             firstCard.GetComponent<card>().destroyCard();
             secondCard.GetComponent<card>().destroyCard();
 
@@ -63,6 +69,11 @@ public class gameManager : MonoBehaviour
 
         firstCard = null;
         secondCard = null;
+    }
+
+    public void retryGame()
+    {
+        SceneManager.LoadScene("MainScene");
     }
 
 }

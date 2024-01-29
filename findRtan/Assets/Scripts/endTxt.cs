@@ -19,6 +19,7 @@ public class endTxt : MonoBehaviour
 
     public void retryGame()
     {
-        SceneManager.LoadScene("MainScene");
+        adsManager.I.ShowRewardAd();
+        // SceneManager.LoadScene("MainScene");
     }
 }
