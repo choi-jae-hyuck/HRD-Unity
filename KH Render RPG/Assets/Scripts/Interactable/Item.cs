@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : Interactable
+[CreateAssetMenu(fileName ="Item", menuName ="Inventory/Item", order = 0)]
+public class Item : ScriptableObject
 {
-    public override void Interact()
+    public string name = "Item";
+    public Sprite icon = null;
+
+    public virtual void Use()
     {
-        SelectItem();
+        Debug.Log("Using " + name);
     }
 
-    void SelectItem()
+    public void RemoveFromInventory()
     {
-        Debug.Log("item");
+        Inventory.instance.Remove(this);
     }
 
 }

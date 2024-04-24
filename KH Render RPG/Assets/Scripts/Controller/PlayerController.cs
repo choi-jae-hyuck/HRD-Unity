@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 public class PlayerController : MonoBehaviour
 {
     public delegate void OnFocusChanged(Interactable newFocus);
@@ -29,6 +29,10 @@ public class PlayerController : MonoBehaviour
   
     void Update()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
+
         // float agentVelocity = agent.velocity.sqrMagnitude;
 
         if (Input.GetMouseButtonDown(0))
@@ -36,7 +40,7 @@ public class PlayerController : MonoBehaviour
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, 100, movementMask))
+            if (Physics.Raycast(ray, out hit, movementMask))
             {
                 motor.MoveToTarget(hit.point);
                 SetFocus(null);
@@ -49,7 +53,7 @@ public class PlayerController : MonoBehaviour
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, 100, interactionMask))
+            if (Physics.Raycast(ray, out hit, interactionMask))
             {
                 SetFocus(hit.collider.GetComponent<Interactable>());
                 // == combat.Attack();
@@ -86,7 +90,7 @@ public class PlayerController : MonoBehaviour
 
         if(focus != null)
         {
-            focus.OnFocused(transform);
+            focus.OnFocused();
         }
 
 

@@ -12,6 +12,8 @@ public class CharacterStat : MonoBehaviour
 
     public int power = 10;
 
+    public bool isDebug = false;
+
     private void OnEnable()
     {
         currentHP = maxHP;
@@ -19,10 +21,22 @@ public class CharacterStat : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(isDebug)
         {
-            Hitted(10);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Hitted(10);
+            }
+            Debug.Log(currentHP);
         }
+
+    }
+
+    public void Heal(int heal)
+    {
+        currentHP += heal;
+
+        currentHP = Mathf.Clamp(currentHP, 0, maxHP);
     }
 
     public void Hitted(int damage)
