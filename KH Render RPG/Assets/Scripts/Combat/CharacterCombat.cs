@@ -20,10 +20,13 @@ public class CharacterCombat : MonoBehaviour
     #endregion
 
     CharacterStat myStat;
+    public Transform hpBarTf;
 
-    private void Awake()
+    private void Start()
     {
         myStat = GetComponent<CharacterStat>();
+        Debug.Log(HPBarManager.instance);
+        HPBarManager.instance.Create(hpBarTf, myStat);
     }
 
     public void Idle()

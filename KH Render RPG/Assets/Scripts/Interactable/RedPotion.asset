@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: RedPotion
   icon: {fileID: 21300000, guid: 8b0d42b6644d32946b22c400395cde6c, type: 3}
+  audioClip: {fileID: 8300000, guid: c952c74dd0dfb5c44b632b0c5564c936, type: 3}
   heal: 10

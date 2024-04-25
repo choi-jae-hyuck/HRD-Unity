@@ -8,6 +8,7 @@ public class CharacterStat : MonoBehaviour
     public event Action OnHPZero;
 
     int currentHP;
+    public int CurrentHP { get { return currentHP; } }
     public int maxHP;
 
     public int power = 10;
