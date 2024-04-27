@@ -22,11 +22,13 @@ public class CharacterCombat : MonoBehaviour
     CharacterStat myStat;
     public Transform hpBarTf;
 
+    public ParticleSystem ps;
+
     private void Start()
     {
         myStat = GetComponent<CharacterStat>();
-        Debug.Log(HPBarManager.instance);
         HPBarManager.instance.Create(hpBarTf, myStat);
+
     }
 
     public void Idle()
@@ -63,6 +65,8 @@ public class CharacterCombat : MonoBehaviour
 
     public void Hitted()
     {
+        if (ps != null)
+            ps.Play();
         OnHit?.Invoke();
     }
 
